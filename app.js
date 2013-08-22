@@ -536,7 +536,13 @@ function processRequest(req, res, next) {
         headers[header] = apiConfig.headers[header];
     for( header in customHeaders )
         headers[header] = customHeaders[header];
-
+    
+    //Check for overridden protocol in the method
+    protocol = apiConfig.protocol; 
+    if(reqQuery.protocol){ 
+      protocol = reqQuery.protocol; 
+    }
+    
     var paramString = query.stringify(params),
         privateReqURL = apiConfig.protocol + '://' + apiConfig.baseURL + apiConfig.privatePath + methodURL + ((paramString.length > 0) ? '?' + paramString : ""),
         options = {

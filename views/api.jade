@@ -89,7 +89,8 @@ block content
                               input(type='hidden', name='oauth', value=secure)
                               input(type='hidden', name='methodUri', value=method.URI)
                               input(type='hidden', name='accessToken', id='accessToken')
-
+                              - if (method.protocol)
+                                  input(type='hidden', name='protocol', value=method.protocol)
                               span.description !{method.Synopsis}
                               br
                               br
